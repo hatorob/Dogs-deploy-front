@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { GET_DOGS, GET_TEMPERAMENTS, GET_BY_NAME, SET_CURRENT_PAGE, CREATE_DOG, FILTER_TEMPERAMENTS, DISPLAY_STATE, GET_DOGS_API, GET_DOGS_CREATE, RESET_FILTERS, FILTER_WEIGHT, FILTER_ALPHABETIC, GET_DOG_BY_ID, REST_BY_ID } from "./actions-type";
 
+
+
 export const getDogs = () => {
     return async (dispatch) => {
       try {
-        const {data} = await axios.get('http://localhost:3001/dogs');
+        const {data} = await axios.get('/dogs');
         dispatch({ type: GET_DOGS, payload: data });
       } catch (error) {
         alert("error: " + error.response.data.error);
@@ -15,7 +17,7 @@ export const getDogs = () => {
 export const getTemperaments = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get("http://localhost:3001/temperaments");
+            const { data } = await axios.get("/temperaments");
             dispatch({type: GET_TEMPERAMENTS, payload: data })
         } catch (error) {
             alert("error: " + error.response.data.error);
@@ -26,7 +28,7 @@ export const getTemperaments = () => {
 export const getDogsByName = (name) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/dogs/name?name=${name}`);
+            const { data } = await axios.get(`/dogs/name?name=${name}`);
             dispatch({type: GET_BY_NAME, payload: data })
         } catch (error) {
             alert("error: " + error.response.data.error);
@@ -37,7 +39,7 @@ export const getDogsByName = (name) => {
 export const getDogsById = (id) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/dogs/${id}`);
+            const { data } = await axios.get(`/dogs/${id}`);
             dispatch({type: GET_DOG_BY_ID, payload: data })
         } catch (error) {
             alert("error: " + error.response.data.error);
@@ -48,7 +50,7 @@ export const getDogsById = (id) => {
 export const createDog = (dog) => {
     return async (dispatch) => {
         try {
-            const url = "http://localhost:3001/dogs";
+            const url = "/dogs";
             const config = {
                 headers: {
                     'Content-Type': 'application/json'
